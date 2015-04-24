@@ -11,11 +11,19 @@ class Config(object):
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
-    BROKER_URL = 'redis://localhost:6379/10'
+
+    #heroku
+    # heroku addons:add redistogo:nano
+
+    redis_url = os.environ.get('REDISTOGO_URL')
+    if redis_url:
+        BROKER_URL = redis_url
+    else:
+        BROKER_URL = 'redis://localhost:6379/10'
 
     #heroku stuff - mongolab compatible settings
     # heroku addons:add mongolab
-    
+
     mongo_uri = os.environ.get('MONGOLAB_URI')
     if mongo_uri:
 
