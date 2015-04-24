@@ -12,9 +12,24 @@ class Config(object):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     BROKER_URL = 'redis://localhost:6379/10'
-    MONGODB_SETTINGS = {
-        'DB': 'enferno'
-    }
+
+    #heroku stuff - mongolab compatible settings
+    # heroku addons:add mongolab
+    
+    mongo_uri = os.environ.get('MONGOLAB_URI')
+    if mongo_uri:
+
+        MONGODB_SETTINGS = {
+            'db': mongo_uri.split('/')[-1],
+            'host': mongo_uri
+        }
+    else:
+        MONGODB_SETTINGS = {
+            'db': 'enferno',
+            'host': '127.0.0.1'
+        }
+
+
 
     #security
     SECURITY_REGISTERABLE = True
