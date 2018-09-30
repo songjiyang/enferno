@@ -13,7 +13,7 @@ class Config(object):
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     #SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/enferno.db'
     #for postgres
-    SQLALCHEMY_DATABASE_URI = 'postgresql://enferno:verystrongpass@postgres/enferno'
+    SQLALCHEMY_DATABASE_URI = 'mysql://enferno:manage@localhost/enferno'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     CELERY_BROKER_URL = 'redis://redis:6379/10'
     CELERY_RESULT_BACKEND = 'redis://redis:6379/11'
